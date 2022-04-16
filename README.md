@@ -1,0 +1,1 @@
+# amazonlinux2022-for-self-hosted-runners
