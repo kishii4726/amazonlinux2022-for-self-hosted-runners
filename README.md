@@ -1,6 +1,6 @@
 # amazonlinux2022-for-self-hosted-runners
 GitHub self-hosted runners running on Amazon Linux 2022.
-# usage
+# Usage
 
 ## Register Parameter
 ```
@@ -18,6 +18,9 @@ $ terraform init
 $ terraform plan
 $ terraform apply
 ```
+
+# Debug
+Use Session Manager to login and debug the target instance.
 
 # Note
 - Assumed to run in the ap-northeast-1
