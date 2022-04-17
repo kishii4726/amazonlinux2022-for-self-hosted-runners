@@ -11,12 +11,18 @@ $ aws ssm put-parameter \
       --type "SecureString"
 ```
 
+##
+
 ## Create self-hosted runner
 ```
 $ cd terraform
 $ terraform init
-$ terraform plan
-$ terraform apply
+$ terraform plan \
+   -var 'owner=<your owner name>' \
+   -var 'repository=<your repository name>'
+$ terraform apply  \
+   -var 'owner=<your owner name>' \
+   -var 'repository=<your repository name>'
 ```
 
 # Debug

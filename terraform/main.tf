@@ -122,8 +122,8 @@ resource "aws_launch_template" "githubactions_runner" {
     }
   }
   user_data = base64encode(templatefile("${path.module}/template/userdata.sh", {
-    owner      = local.owner
-    repository = local.repository
+    owner      = var.owner
+    repository = var.repository
     label      = local.label
   }))
 }
