@@ -13,7 +13,7 @@ module "vpc" {
 }
 
 resource "aws_iam_policy" "githubactions_runner" {
-  name = "${local.prefix}-githubactions-runner-policy"
+  name = "${local.prefix}-policy"
   policy = jsonencode(
     {
       Statement = [
@@ -36,7 +36,7 @@ resource "aws_iam_policy" "githubactions_runner" {
 
 
 resource "aws_iam_role" "githubactions_runner" {
-  name                 = "${local.prefix}-githubactions-runner-role"
+  name                 = "${local.prefix}-role"
   max_session_duration = 3600
   path                 = "/"
   assume_role_policy = jsonencode(
@@ -61,7 +61,7 @@ resource "aws_iam_role" "githubactions_runner" {
 }
 
 resource "aws_iam_instance_profile" "githubactions_runner" {
-  name = "${local.prefix}-githubactions-runner-role"
+  name = "${local.prefix}-role"
   role = aws_iam_role.githubactions_runner.name
 }
 
@@ -82,9 +82,9 @@ resource "aws_security_group" "githubactions_runner" {
       self             = false
     },
   ]
-  name = "${local.prefix}-githubactions-runner-sg"
+  name = "${local.prefix}-sg"
   tags = {
-    "Name" = "${local.prefix}-githubactions-runner-sg"
+    "Name" = "${local.prefix}-sg"
   }
   vpc_id = module.vpc.vpc_id
 }
@@ -118,7 +118,7 @@ resource "aws_launch_template" "githubactions_runner" {
   tag_specifications {
     resource_type = "instance"
     tags = {
-      Name = "${local.prefix}-githubactions-runner"
+      Name = "${local.prefix}-runner"
     }
   }
   user_data = base64encode(templatefile("${path.module}/template/userdata.sh", {
