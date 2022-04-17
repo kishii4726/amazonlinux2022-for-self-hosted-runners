@@ -1,5 +1,9 @@
 # amazonlinux2022-for-self-hosted-runners
 GitHub self-hosted runners running on Amazon Linux 2022.
+
+# Requirements
+- terraform ~> 1.1.4
+- aws cli
 # Usage
 
 ## Register Parameter
